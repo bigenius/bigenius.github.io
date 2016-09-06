@@ -89,7 +89,7 @@ $(document).ready( function(){
 			console.log( "Moving", direction.y );		
 		}
 	  
-	  console.log( "Touch moved by", offset.x, "horizontally and", offset.y, "vertically" );    
+	  console.log( "Touch moved by", Math.abs(offset.x), "horizontally and", Math.abs(offset.y), "vertically" );    
 	});
 });
 
