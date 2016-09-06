@@ -79,6 +79,7 @@ $(function() {
     return true;
   };
 });
+$(document).ready( function(){
 $("#swipe").swipe(function( direction, offset ) {
 		if (offset.x > offset.y) {
 			console.log( "Moving", direction.x);	
@@ -90,7 +91,7 @@ $("#swipe").swipe(function( direction, offset ) {
 	  
 	  console.log( "Touch moved by", offset.x, "horizontally and", offset.y, "vertically" );    
 	});
-
+});
 </script>
 </body>
 </html>
