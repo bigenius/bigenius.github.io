@@ -28,7 +28,8 @@ body {
     <div class="page front" id="swipe">
         <p>Swipe me</p>
     </div>
-
+<div id="direction"></div>
+<div id="offset"></div>
     <script >
 $(function() {
   $.fn.swipe = function( callback ) {
@@ -80,8 +81,10 @@ $(function() {
 });
 $("#swipe").swipe(function( direction, offset ) {
 		if (offset.x > offset.y) {
-			console.log( "Moving", direction.x);		
+			console.log( "Moving", direction.x);	
+			$("#direction").text(direction.x);
 		} else {
+			$("#direction").text(direction.y);
 			console.log( "Moving", direction.y );		
 		}
 	  
