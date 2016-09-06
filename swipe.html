@@ -80,8 +80,8 @@ $(function() {
   };
 });
 $(document).ready( function(){
-$("#swipe").swipe(function( direction, offset ) {
-		if (offset.x > offset.y) {
+	$("#swipe").swipe(function( direction, offset ) {
+		if ( Math.abs(offset.x) > Math.abs(offset.y) ) {
 			console.log( "Moving", direction.x);	
 			$("#direction").text(direction.x);
 		} else {
@@ -92,6 +92,7 @@ $("#swipe").swipe(function( direction, offset ) {
 	  console.log( "Touch moved by", offset.x, "horizontally and", offset.y, "vertically" );    
 	});
 });
+
 </script>
 </body>
 </html>
