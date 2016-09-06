@@ -1,0 +1,92 @@
+<html>
+<head>
+    <title>Page turner</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1.0,user-scalable=no">
+<style>
+/* Set 3D perspective */
+body {
+}
+/* Define a page */
+.page {
+
+    height: 200;
+    width: 90%;
+    background-color: #ffcc99;
+    border-radius: 10;
+    margin: 0 auto;
+    text-align: center
+}
+
+</style>
+
+<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+</head>
+ 
+<body >
+
+
+    <div class="page front" id="swipe">
+        <p>Swipe me</p>
+    </div>
+
+    <script >
+$(function() {
+  $.fn.swipe = function( callback ) {
+    var touchDown = false,
+      originalPosition = null,
+      $el = $( this );
+
+    function swipeInfo( event ) {
+      var x = event.originalEvent.pageX,
+        y = event.originalEvent.pageY,
+        dx, dy;
+
+      dx = ( x > originalPosition.x ) ? "right" : "left";
+      dy = ( y > originalPosition.y ) ? "down" : "up";
+
+      return {
+        direction: {
+          x: dx,
+          y: dy
+        },
+        offset: {
+          x: x - originalPosition.x,
+          y: originalPosition.y - y
+        }
+      };
+    }
+
+    $el.on( "touchstart mousedown", function ( event ) {
+      touchDown = true;
+      originalPosition = {
+        x: event.originalEvent.pageX,
+        y: event.originalEvent.pageY
+      };
+    } );
+
+    $el.on( "touchend mouseup", function () {
+      touchDown = false;
+      originalPosition = null;
+    } );
+
+    $el.on( "touchmove mousemove", function ( event ) {
+      if ( !touchDown ) { return;}
+      var info = swipeInfo( event );
+      callback( info.direction, info.offset );
+    } );
+
+    return true;
+  };
+});
+$(document).ready( function(){
+
+	$("#swipe").swipe(function( direction, offset ) {
+	  console.log( "Moving", direction.x, "and", direction.y );
+	  console.log( "Touch moved by", offset.x, "horizontally and", offset.y, "vertically" );    
+	});
+	
+});
+
+</script>
+</body>
+</html>
